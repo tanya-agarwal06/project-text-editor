@@ -8,7 +8,7 @@ import PIL
 from PIL import Image
 from tkinter.colorchooser import askcolor
 from tkinter import PhotoImage
-#===============================================functions=================================================================
+
 
 filename=None
 
@@ -17,7 +17,7 @@ def new_file(event=None):
     filename="Untitled"
     text.delete(0.0,END)
 
-def savefile(event=None):                               # file handling
+def savefile(event=None):                               
     global filename
     t=text.get(0.0,END)
     f=open(filename,mode='w')
@@ -59,8 +59,6 @@ def findin(event=None):
 
     print(t.upper().count(findString.upper()))
 
-#=======================================================================================================================
-def cut(event=None):
     text.event_generate("<<Cut>>")
 
 def copy(event=None):
@@ -115,15 +113,13 @@ def background():
 
 def help():
     print("Help index")
-#================================================================================================================================
 
 master=Tk()
-#master.iconbitmap('icons/favicon.ico')
 scrollbar=Scrollbar(master)
 master.title("TEXT EDITOR")
 
 icon_frame=Frame(master,bg="black")
-icon_frame.pack(expand=NO,fill=X)                                       # user interface
+icon_frame.pack(expand=NO,fill=X)                                       
 text=Text(master,yscrollcommand=scrollbar.set)
 text.pack(expand=YES,fill=BOTH)
 scrollbar.pack(side=RIGHT,fill=Y)
@@ -171,17 +167,17 @@ helpmenu.add_command(label='About',command=About)
 
 status=Label(master,text="PREP. to do nothing",bd=1,relief=SUNKEN,anchor=W)
 status.pack(side=BOTTOM,fill=X)
-#======================================================================================================================
+
 text.bind("<Control-N>",new_file)
 text.bind("<Control-O>",openfile)
-text.bind("<Control-S>",savefile)                             # SHORTCUT KEYS
+text.bind("<Control-S>",savefile)                            
 text.bind("<Control-F>",findin)
 text.bind("<Control-X>",cut)
 text.bind("<Control-C>",copy)
 text.bind("<Control-V>",paste)
 text.bind("<Control-A>",selectAll)
 text.bind("<Control-D>",deselectAll)
-#=======================================================================================================================
+
 img = Image.open("new_file.gif")
 width,height =img.size
 img.resize((100,100), Image.ANTIALIAS)
@@ -198,7 +194,7 @@ labe3.pack(side=LEFT)
 copy_icon = PhotoImage(file='copy.gif')
 labe4=Button(master,image=copy_icon)
 labe4.pack(side=LEFT)
-paste_icon = PhotoImage(file='paste1.gif')                # ICONS
+paste_icon = PhotoImage(file='paste1.gif')               
 labe5=Button(master,image=paste_icon)
 labe5.pack(side=LEFT)
 undo_icon = PhotoImage(file='undo1.gif')
@@ -208,14 +204,6 @@ redo_icon = PhotoImage(file='redo1.gif')
 labe7=Button(master,image=redo_icon)
 labe7.pack(side=LEFT)
 
-#D:\assignment\icons\cut.gif
-#adding shortcut icons
-# icons=( 'new_file','save', 'cut1', 'copy1', 'paste1','undo1', 'redo1')
-# for i, icon in enumerate(icons):
-#     tool_bar_icon = PhotoImage(file='{}.gif'.format(icon)).zoom(2,2)
-#     cmd = eval(icon)
-#     tool_bar = Button(icon_frame, image=tool_bar_icon, height=35,width=35, command=cmd)
-#     tool_bar.image = tool_bar_icon
-#     tool_bar.pack(side=LEFT)
+
 
 mainloop()
